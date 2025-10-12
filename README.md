@@ -2,7 +2,7 @@
 
 A full-stack web application that leverages a powerful 70-billion parameter Large Language Model (NVIDIA Llama 3.1) to analyze text, files, and URLs for potential security threats in real-time. This tool provides a user-friendly, streaming interface to get instant, AI-driven security analysis.
 
-### 🔗 **[Click Here for the Live Demo](https://ai-threat-detector-hhzaz8kmi-devansh-agarwals-projects-1d5291be.vercel.app/)**
+### 🔗 **[Click Here for the Live Demo](https://ai-threat-detector-three.vercel.app/)**
 
 ![Screenshot of the AI Threat Detector Application](https://user-images.githubusercontent.com/10284367/223212870-272a11b6-7d1c-43f0-8e7c-501f6f874d1a.png)
 *(**Note:** To replace this placeholder image, simply take a screenshot of your app, upload the image file to your GitHub repository, and replace the link above with the new image's URL.)*
