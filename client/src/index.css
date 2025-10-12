@@ -1,0 +1,24 @@
+/* Keep the existing @tailwind rules at the top */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add these new styles for our Markdown content */
+.markdown-content h3 {
+  @apply text-xl font-bold mt-4 mb-2 text-teal-300;
+}
+.markdown-content p {
+  @apply mb-3;
+}
+.markdown-content ul {
+  @apply list-disc list-inside pl-4 mb-4;
+}
+.markdown-content li {
+  @apply mb-1;
+}
+.markdown-content code {
+  @apply bg-gray-700 text-red-300 rounded-md px-2 py-1 text-sm font-mono;
+}
+.markdown-content pre > code {
+  @apply block whitespace-pre-wrap p-4;
+}
