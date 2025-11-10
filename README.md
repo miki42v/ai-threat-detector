@@ -1,8 +1,10 @@
 # 🤖 AI-Powered Threat Detector
 
-A full-stack web application that leverages a powerful 70-billion parameter Large Language Model (NVIDIA Llama 3.1) to analyze text, files, and URLs for potential security threats in real-time. This tool provides a user-friendly, streaming interface to get instant, AI-driven security analysis.
+A full-stack web application that leverages NVIDIA's advanced AI model (Llama 3.3 Nemotron Super 49B) to analyze text, files, and URLs for potential security threats in real-time. This tool provides a user-friendly, streaming interface to get instant, comprehensive AI-driven security analysis with proper markdown formatting.
 
 ### 🔗 **[Click Here for the Live Demo](https://ai-threat-detector-three.vercel.app/)**
+
+> **Note:** Live demo may take 30 seconds to wake up on first request (Render free tier limitation). For deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ![Screenshot of the AI Threat Detector Application](https://user-images.githubusercontent.com/10284367/223212870-272a11b6-7d1c-43f0-8e7c-501f6f874d1a.png)
 *(**Note:** To replace this placeholder image, simply take a screenshot of your app, upload the image file to your GitHub repository, and replace the link above with the new image's URL.)*
@@ -11,13 +13,15 @@ A full-stack web application that leverages a powerful 70-billion parameter Larg
 
 ## ✨ Core Features
 
-- **Real-Time Streaming Analysis:** Get instant, word-by-word feedback from the AI, providing a dynamic and responsive user experience.
+- **Real-Time Streaming Analysis:** Get instant, word-by-word feedback from the AI with intelligent filtering of reasoning processes for clean, professional output.
 - **Multi-Faceted Input Methods:**
   - **Text Analysis:** Paste any code snippet, log file, email body, or suspicious text directly into the application.
-  - **File Upload:** Upload local files (`.js`, `.py`, `.log`, `.txt`, etc.) for an in-depth analysis of their contents.
-  - **Live URL Scanning:** Enter any URL to have the backend fetch its live HTML content and scan it for malicious scripts, phishing indicators, or other threats.
-- **Secure Proxy Architecture:** The Node.js backend acts as a secure intermediary, managing the NVIDIA API key and ensuring it is never exposed to the user's browser, which is a critical security practice.
-- **Modern & Responsive UI:** Built with React and Tailwind CSS for a polished, professional, and intuitive user experience that works seamlessly on desktop and mobile devices.
+  - **File Upload:** Upload local files (`.js`, `.py`, `.log`, `.txt`, `.html`, `.css`, `.md`, etc.) for an in-depth analysis of their contents.
+  - **Live URL Scanning:** Enter any URL to have the backend fetch its live HTML content and scan it for malicious scripts, phishing indicators, XSS, CSRF, and other threats.
+- **Comprehensive Security Analysis:** Identifies multiple threat categories including XSS, CSRF, SQL Injection, API exposure, CORS misconfigurations, authentication issues, and more.
+- **Beautiful Markdown Output:** AI responses are formatted with proper headings, bold text, code blocks, and lists for easy readability.
+- **Secure Proxy Architecture:** The Node.js backend acts as a secure intermediary, managing the NVIDIA API key and ensuring it is never exposed to the user's browser.
+- **Modern & Responsive UI:** Built with React and Tailwind CSS with custom scrollable markdown containers and syntax highlighting.
 
 ---
 
@@ -37,8 +41,9 @@ This project is a full-stack application with a clear separation of concerns bet
   - **Security:** `dotenv` for managing environment variables and `cors` for secure cross-origin communication.
 
 - **AI Service:**
-  - **Provider:** NVIDIA API Gateway
-  - **Model:** `llama-3.1-nemotron-70b-instruct`, a state-of-the-art model for nuanced language and code comprehension.
+  - **Provider:** NVIDIA Integrate API
+  - **Model:** `nvidia/llama-3.3-nemotron-super-49b-v1.5` - An advanced model optimized for comprehensive security analysis
+  - **Features:** 8192 max tokens, streaming responses, intelligent reasoning process filtering
 
 - **Deployment:**
   - **Frontend:** Deployed on **Vercel**, configured for continuous integration from the `client` directory.
@@ -48,7 +53,17 @@ This project is a full-stack application with a clear separation of concerns bet
 
 ## 🚀 Getting Started Locally
 
-Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
+### Recent Updates & Improvements
+
+**Latest Version (v2.0)** includes:
+- ✅ Upgraded to NVIDIA Llama 3.3 Nemotron Super 49B v1.5
+- ✅ Intelligent `<think>` tag filtering - hides AI reasoning for cleaner output
+- ✅ Enhanced markdown formatting with custom styling
+- ✅ Increased token limit (1024 → 8192) for comprehensive analysis
+- ✅ Fixed buffer management for complete responses without truncation
+- ✅ Improved system prompt for better structured threat analysis
+- ✅ Enhanced CSS with scrollable containers and syntax highlighting
+- ✅ Added debugging and stream completion logging
 
 ### Prerequisites
 
@@ -61,3 +76,104 @@ Follow these instructions to get a copy of the project up and running on your lo
    ```bash
    git clone https://github.com/miki42v/ai-threat-detector.git
    cd ai-threat-detector
+   ```
+
+2. **Set up the Backend (Server):**
+   ```bash
+   cd server
+   npm install
+   ```
+
+3. **Configure Environment Variables:**
+   - Create a `.env` file in the `server` directory:
+     ```bash
+     echo "NVIDIA_API_KEY=your-api-key-here" > .env
+     ```
+   - Get your NVIDIA API key from [https://build.nvidia.com/](https://build.nvidia.com/)
+
+4. **Set up the Frontend (Client):**
+   ```bash
+   cd ../client
+   npm install
+   ```
+
+5. **Configure Client Environment:**
+   - Create a `.env` file in the `client` directory (for local development):
+     ```bash
+     echo "REACT_APP_API_URL=http://localhost:5001" > .env
+     ```
+
+### Running the Application
+
+1. **Start the Backend Server:**
+   ```bash
+   cd server
+   node server.js
+   ```
+   Server will run on `http://localhost:5001`
+
+2. **Start the Frontend (in a new terminal):**
+   ```bash
+   cd client
+   npm start
+   ```
+   Frontend will run on `http://localhost:3000`
+
+3. **Open your browser** and navigate to `http://localhost:3000`
+
+---
+
+## 🌐 Deployment
+
+For detailed deployment instructions to production (Vercel + Render), see [DEPLOYMENT.md](DEPLOYMENT.md).
+
+**Quick Summary:**
+- **Backend**: Deploy to Render with `NVIDIA_API_KEY` environment variable
+- **Frontend**: Deploy to Vercel with `REACT_APP_API_URL` pointing to your Render backend
+
+---
+
+## 🔒 Security Notes
+
+- ⚠️ **Never commit your `.env` files** - they contain sensitive API keys
+- ✅ Both `server/.env` and `client/.env` are already in `.gitignore`
+- ✅ API key is only used server-side and never exposed to the browser
+- ✅ CORS is configured to allow cross-origin requests
+- 🔄 **Rotate your API key** if it's ever accidentally exposed
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- **NVIDIA** for providing the powerful AI models through their Integrate API
+- **React** and **Tailwind CSS** for the frontend framework and styling
+- **Express.js** for the backend framework
+- The open-source community for continuous inspiration and support
+
+---
+
+## 📧 Contact
+
+Project Link: [https://github.com/miki42v/ai-threat-detector](https://github.com/miki42v/ai-threat-detector)
+
+---
+
+**⭐ If you find this project useful, please consider giving it a star!**
