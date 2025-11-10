@@ -36,3 +36,133 @@
     transform: rotate(360deg);
   }
 }
+
+/* Markdown Content Styling */
+.markdown-content {
+  text-align: left;
+  max-height: 70vh;
+  min-height: 400px;
+  overflow-y: auto;
+  padding: 1.5rem;
+  background-color: #1f2937;
+  border-radius: 0.5rem;
+  line-height: 1.8;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+  color: #14b8a6;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+  border-bottom: 2px solid #374151;
+  padding-bottom: 0.5rem;
+}
+
+.markdown-content h1 {
+  font-size: 2rem;
+}
+
+.markdown-content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #10b981;
+}
+
+.markdown-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #34d399;
+}
+
+.markdown-content p {
+  margin-bottom: 1rem;
+  line-height: 1.8;
+  color: #e5e7eb;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+  color: #e5e7eb;
+}
+
+.markdown-content li {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.markdown-content ul li::marker {
+  color: #14b8a6;
+}
+
+.markdown-content code {
+  background-color: #374151;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-family: 'Courier New', monospace;
+  color: #fbbf24;
+  font-size: 0.9em;
+}
+
+.markdown-content pre {
+  background-color: #111827;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 1.25rem;
+  border: 1px solid #374151;
+}
+
+.markdown-content pre code {
+  background-color: transparent;
+  padding: 0;
+  color: #10b981;
+  font-size: 0.875rem;
+}
+
+.markdown-content strong {
+  color: #fbbf24;
+  font-weight: 700;
+}
+
+.markdown-content em {
+  color: #a78bfa;
+  font-style: italic;
+}
+
+.markdown-content blockquote {
+  border-left: 4px solid #14b8a6;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.markdown-content hr {
+  border: 0;
+  height: 2px;
+  background: #374151;
+  margin: 1.5rem 0;
+}
+
+/* Scrollbar styling */
+.markdown-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.markdown-content::-webkit-scrollbar-track {
+  background: #1f2937;
+  border-radius: 5px;
+}
+
+.markdown-content::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 5px;
+}
+
+.markdown-content::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}

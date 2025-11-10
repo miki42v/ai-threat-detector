@@ -35,10 +35,14 @@ function App() {
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
+      let totalLength = 0;
 
       while (true) {
         const { done, value } = await reader.read();
-        if (done) break;
+        if (done) {
+          console.log('Stream complete. Total characters received:', totalLength);
+          break;
+        }
 
         const chunk = decoder.decode(value);
         const lines = chunk.split('\n').filter(line => line.trim() !== '');
@@ -49,6 +53,7 @@ function App() {
             try {
               const parsed = JSON.parse(message);
               if (parsed.content) {
+                totalLength += parsed.content.length;
                 setResult(prevResult => prevResult + parsed.content);
               }
             } catch (e) {
